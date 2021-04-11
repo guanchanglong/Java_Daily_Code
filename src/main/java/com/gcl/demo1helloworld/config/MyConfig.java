@@ -1,14 +1,13 @@
 package com.gcl.demo1helloworld.config;
 
 import ch.qos.logback.core.db.DBHelper;
+import com.gcl.demo1helloworld.bean.Car;
 import com.gcl.demo1helloworld.bean.Pet;
 import com.gcl.demo1helloworld.bean.User;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.*;
 
 /**
  * @author：小关同学爱吃汉堡
@@ -20,15 +19,24 @@ import org.springframework.context.annotation.Import;
  *      给容器中自动创建出这两个类型的组件，默认组件的名字就是全类名
  */
 
-@Import({User.class, DBHelper.class})
-@Configuration(proxyBeanMethods = true)  //告诉SpringBoot这是一个配置类，
+//@Import({User.class, DBHelper.class})
 // 配置类本身也是一个组件
 //proxyBeanMethods：代理bean的方法
 //  Full(proxyBeanMethods = true)
 //  Lite(proxyBeanMethods = false)
 //  组件依赖
+
+//组件条件控制
 //@ConditionalOnBean(name = "tom")
-@ConditionalOnMissingBean(value = Pet.class)
+//@ConditionalOnMissingBean(value = Pet.class)
+
+//bean.xml文件导入
+//@ImportResource(value = "classpath:bean.xml")
+
+//1.开启Car的配置绑定功能
+//2.把Car这个组件自动注册到容器当中
+@EnableConfigurationProperties(Car.class)
+@Configuration
 public class MyConfig {
 
     /**

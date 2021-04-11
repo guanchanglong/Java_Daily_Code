@@ -5,9 +5,12 @@ import com.gcl.demo1helloworld.bean.User;
 import com.gcl.demo1helloworld.config.MyConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ComponentScans;
+import org.springframework.context.annotation.Conditional;
 
 @SpringBootApplication(scanBasePackages="com.gcl")
 public class Demo1HelloworldApplication {
@@ -60,16 +63,31 @@ public class Demo1HelloworldApplication {
 //            System.out.println(type);
 //        }
 
-        boolean config = context.containsBean("myConfig");
-        System.out.println("组件中包含config?"+config);
 
-        boolean user01 = context.containsBean("user01");
-        System.out.println("组件中包含user01?"+user01);
 
-        boolean user02 = context.containsBean("user02");
-        System.out.println("组件中包含user02?"+user02);
 
-        boolean cat = context.containsBean("cat");
-        System.out.println("组件中包含cat?"+cat);
+        //@ConditionalOnMissingBean
+        //@ConditionalOnBean
+        //@Conditional()
+        //三大注解的测试
+//        boolean config = context.containsBean("myConfig");
+//        System.out.println("组件中包含config?"+config);
+//
+//        boolean user01 = context.containsBean("user01");
+//        System.out.println("组件中包含user01?"+user01);
+//
+//        boolean user02 = context.containsBean("user02");
+//        System.out.println("组件中包含user02?"+user02);
+//
+//        boolean cat = context.containsBean("cat");
+//        System.out.println("组件中包含cat?"+cat);
+
+
+        //@ImportResource注解测试
+        boolean haha = context.containsBean("haha");
+        System.out.println("haha:"+haha);
+
+        boolean hehe = context.containsBean("hehe");
+        System.out.println("hehe:"+hehe);
     }
 }
